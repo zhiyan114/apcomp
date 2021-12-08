@@ -1,13 +1,18 @@
 body {
     background-image: url("background.jpg");
     background-color: rgb(1, 46, 86);
+    color: #ffffff;
+    font-size: 85%;
+    margin:0;
+    padding:0;
 }
 
-body,div,h1,h2,h3,h4,h5,h6,p,ul,li,dd,dt {
+div,h1,h2,h3,h4,h5,h6,p,ul,li,dd,dt {
     font-family:verdana,sans-serif;
     margin:0;
     padding:0;
   }
+  
 
 body {
     background-color: #012e56;
@@ -56,3 +61,35 @@ body {
       top: 25vh;
     }
   }
+
+  /* Restyling some internal (重新设置文本) */
+  a, a:visited, a:hover {
+    color: #b4c7d9;
+    text-decoration: none;
+  }
+  a:hover {
+    color: #e6f2fa;
+  }
+  button, input, select, textarea {
+    border: 0;
+    border-radius: 2px;
+    min-width: 5rem;
+  }
+  button:focus, input:focus, select:focus, textarea:focus {
+    background-color: #ffffcd;
+    border: 0px none;
+    outline: none;
+  }
+  /*
+  br {
+    display: block;
+    margin: -4px 0;
+    content:" "
+  }
+
+  div > br {
+    display: block;
+    margin: -4px 0;
+    content:" "
+  }
+  */
