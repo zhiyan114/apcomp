@@ -20,7 +20,7 @@ export default class Home extends React.Component {
             </Helmet>
             <div id="a-home">
                 <div id="searchbox" className="mascotbox">
-                    <h1 style={{fontSize: "4em"}}>
+                    <h1 style={{fontSize: "4em",paddingBottom: "2px", paddingTop:"1.5px"}}>
                         <a href="/" onClick={(e)=>{e.preventDefault(); Swal.fire({title:"Bruh",text:"This is a yiff site, to keep this project SFW, I wont redirect you", icon: "warning",confirmButtonText:"Fine Whatever"}); }}>e621</a>
                     </h1>
                     <div id="links">
@@ -36,8 +36,10 @@ export default class Home extends React.Component {
                         <form action="https://e621.net/posts" acceptCharset="UTF-8" method="get">
                             <div>
                                 <input type="text" name="tags" id="tags" defaultValue="" size="30" autoFocus="autofocus" autoComplete="off"/><br/>
-                                <input type="submit" value="Search" style={{margin:"5px"}}/>
-                                <input type="button" value="Change Mascot" id="change-mascot"/>
+                                <div style={{position:"relative"}}>
+                                    <input type="submit" class="smallbtn" value="Search" style={{marginRight:"5px",marginLeft:"-5px"}}/>
+                                    <input type="button" class="smallbtn" value="Change Mascot" id="change-mascot" style={{marginRight:"-5px", paddingLeft:"2px",paddingRight:"2px"}}/>
+                                </div>
                             </div>
                         </form>
                     </div>
@@ -53,11 +55,13 @@ export default class Home extends React.Component {
                     <img src={one} alt="1"/>
                 </div>
                 <div id="searchbox3" className="mascotbox">
-                    <p>
-                        Serving 2,610,201 posts<br/>
+                    <p style={{marginBottom:"-12px"}}>Serving 2,610,201 posts</p>
+                    <p style={{ marginBottom:"1px"}}>
+                        <br/>
                         <a title="Takedown Information" href="/" onClick={(e)=>{e.preventDefault(); Swal.fire({title: "Nah",text: "This is some fair use stuff, DMCA aint workin here",icon: "error"})}}>Takedown Policy and Process</a>
-                        |
-                        <a title="Contact Us" href="/" onClick={(e)=>{e.preventDefault(); Swal.fire({title: "Help Me", html: `If you need help, contact me via email: <a href="mailto:zhiyan114@zhiyan114.com">zhiyan114@zhiyan114.com</a>`,icon:"info"})}}>Contact Us</a> |
+                        <span> | </span>
+                        <a title="Contact Us" href="/" onClick={(e)=>{e.preventDefault(); Swal.fire({title: "Help Me", html: `If you need help, contact me via email: <a href="mailto:zhiyan114@zhiyan114.com">zhiyan114@zhiyan114.com</a>`,icon:"info"})}}>Contact Us</a>
+                        <span> | </span>
                         <a title="Terms of Service" href="/" onClick={(e)=>{e.preventDefault(); Swal.fire({title: "Terms of Condition", text: "By accessing this site, you acknowledge to only use it for any legal purposes",icon:"info"})}}>Terms of Service</a>
                     </p>
                 </div>

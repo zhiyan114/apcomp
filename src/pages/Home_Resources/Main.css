@@ -1,3 +1,7 @@
+/*
+Default e621.net CSS
+Converted by zhiyan114 (兽迷第一)
+*/
 body {
     background-image: url("background.jpg");
     background-color: rgb(1, 46, 86);
@@ -26,10 +30,11 @@ body {
   }
 
   #links > a {
-    padding: 0.25rem 0.25rem;
+    padding: 0.4rem 0.4rem;
   }
   #links {
-    margin-bottom: 0.25rem;
+    margin-top:-1px;
+    margin-bottom: 0.3rem;
   }
 
   div#a-home {
@@ -78,15 +83,22 @@ body {
     border-radius: 2px;
     min-width: 5rem;
   }
+  button, input[type="button"], input[type="submit"] {
+    font-size: 13.7px;
+  }
   button:focus, input:focus, select:focus, textarea:focus {
     background-color: #ffffcd;
     border: 0px none;
     outline: none;
   }
-  img {
+  #searchbox2 img {
     vertical-align: middle;
-    line-height: 17px;
-    padding: 2.5px;
+    margin-left: 2.4px;
+    margin-right: 2.4px;
+  }
+  /*
+  div > * {
+    margin-top: 0px;
   }
   /*
   br {
@@ -94,7 +106,7 @@ body {
     margin: -4px 0;
     content:" "
   }
-
+  /*
   div > br {
     display: block;
     margin: -4px 0;
