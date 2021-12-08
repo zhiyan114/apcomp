@@ -4652,3 +4652,235 @@ div#c-wiki-page-versions #a-show span.version{
         width:320px
     }
 }
+@media screen and (max-width:800px){
+    .mobile-only{
+        display:unset
+    }
+    body.resp div#c-posts div#a-show .pool-nav li,body.resp div#c-posts div#a-show .search-seq-nav li,body.resp div#c-posts div#a-show .set-nav li{
+        height:2rem
+    }
+    body.resp #search-box{
+        display:none
+    }
+    body.resp .mobile-search{
+        display:block;
+        margin:.5rem .5rem 1.5rem
+    }
+    body.resp .mobile-search .search-help{
+        font-size:85%
+    }
+    body.resp .mobile-search>.search-form>form{
+        box-sizing:border-box;
+        display:flex;
+        margin-bottom:.25rem;
+        width:100%
+    }
+    body.resp .mobile-search>.search-form>form .search-input{
+        flex-grow:1;
+        width:100%
+    }
+    body.resp .mobile-search>.search-form>form .search-input input{
+        border-radius:3px 0 0 3px;
+        box-sizing:border-box;
+        width:100%
+    }
+    body.resp .mobile-search>.search-form>form .search-button>button{
+        border-left:1px solid #ccc;
+        border-radius:0 3px 3px 0;
+        height:32px;
+        width:32px
+    }
+    body.resp .guest-warning .guest-warning-dialog{
+        height:90vh;
+        top:5vh;
+        width:80vw
+    }
+    body.resp #desktop-version-link,body.resp #searchbox-redirect-link{
+        display:inline
+    }
+    body.resp #saved-searches-nav{
+        display:none
+    }
+    body.resp div#page aside#sidebar{
+        padding:5px
+    }
+    body.resp div#page aside#sidebar input#tags{
+        width:80%
+    }
+    body.resp div#page aside#sidebar button[type=submit]{
+        background-color:#eee;
+        border:1px solid #c5c5c5;
+        font-size:1.2em;
+        height:42px;
+        padding:2px 10px
+    }
+    body.resp div#page{
+        padding-left:0;
+        padding-right:0
+    }
+    body.resp div#page>div>div{
+        display:flex;
+        flex-direction:column
+    }
+    body.resp div#page>div>div>aside#sidebar{
+        float:none;
+        font-size:1.5em;
+        order:2;
+        width:auto
+    }
+    body.resp header{
+        position:relative
+    }
+    body.resp #maintoggle{
+        display:block;
+        font-size:2em;
+        font-weight:700
+    }
+    body.resp #maintoggle.toggler-active{
+        background-color:#fff;
+        color:#000
+    }
+    body.resp header#top menu form input{
+        width:auto
+    }
+    body.resp h1{
+        display:none
+    }
+    body.resp form button,body.resp form input,body.resp form select,body.resp form textarea{
+        max-width:100%
+    }
+    body.resp form select{
+        font-size:18pt;
+        vertical-align:top
+    }
+    body.resp form input[type=email],body.resp form input[type=number],body.resp form input[type=password],body.resp form input[type=text]{
+        border:1px solid #c5c5c5;
+        font-size:18pt;
+        vertical-align:top;
+        width:90%
+    }
+    body.resp form textarea{
+        border:1px solid #c5c5c5;
+        vertical-align:top;
+        width:90%
+    }
+    body.resp form button,body.resp form input[type=button],body.resp form input[type=submit]{
+        font-size:160%
+    }
+    body.resp form input[type=submit].tiny{
+        font-size:120%;
+        vertical-align:top
+    }
+    body.resp form.simple_form div.input input[type=email],body.resp form.simple_form div.input input[type=number],body.resp form.simple_form div.input input[type=password],body.resp form.simple_form div.input input[type=text],body.resp form.simple_form div.input textarea{
+        max-width:90%;
+        width:90%
+    }
+    body.resp div#page section#content{
+        margin:0;
+        padding:0
+    }
+    body.resp #comments h2{
+        display:none
+    }
+    body.resp #posts #posts-container{
+        align-items:center;
+        display:flex;
+        flex-wrap:wrap;
+        justify-content:space-evenly;
+        width:100%
+    }
+    body.resp article.post-preview{
+        display:inline-block;
+        float:none;
+        margin:0 0 10px;
+        text-align:center;
+        vertical-align:middle;
+        width:31vw
+    }
+    body.resp article.post-preview a{
+        margin:0 auto
+    }
+    body.resp article.post-preview img{
+        max-height:150px;
+        max-width:31vw
+    }
+    body.resp article.post-preview .desc{
+        font-size:100%
+    }
+    body.resp .user-disable-cropped-false article.post-preview{
+        width:31vw
+    }
+    body.resp .user-disable-cropped-false article.post-preview img{
+        height:auto;
+        max-height:none;
+        max-width:none;
+        width:31vw
+    }
+    body.resp .user-disable-cropped-false article.post-preview img.has-cropped-false{
+        object-fit:cover
+    }
+    body.resp div#options{
+        font-size:24pt;
+        font-weight:700;
+        margin-top:10px
+    }
+    body.resp div#tags{
+        margin-top:30px
+    }
+    body.resp div#tags li{
+        margin:10px 0
+    }
+    body.resp div#tags a.search-tag{
+        font-size:24pt;
+        font-weight:700
+    }
+    body.resp #nav{
+        display:none;
+        font-size:2em;
+        line-height:2em
+    }
+    body.resp header#top menu.main{
+        padding:5px 10px
+    }
+    body.resp h1{
+        display:block;
+        font-size:2em;
+        margin:1em 0 0
+    }
+    body.resp h2{
+        font-size:.825em;
+        margin:1em 0 0
+    }
+    body.resp header{
+        line-height:2em;
+        text-align:center
+    }
+    body.resp header h1{
+        display:inline
+    }
+    body.resp div#page{
+        margin:0
+    }
+}
+@media screen and (max-width:660px){
+    body.resp #c-forum-posts #a-show,body.resp #c-forum-topics #a-show{
+        padding:1em .5em
+    }
+    body.resp #c-forum-posts .created-at,body.resp #c-forum-posts .creator,body.resp #c-forum-topics .created-at,body.resp #c-forum-topics .creator{
+        display:none
+    }
+}
+@media screen and (max-width:440px){
+    body.resp input#expand-search{
+        display:none
+    }
+    body.resp body{
+        width:100%
+    }
+    body.resp #post-sections{
+        font-size:1em
+    }
+}
+#tos-notice{
+    display:none
+}
