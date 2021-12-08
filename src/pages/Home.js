@@ -7,8 +7,33 @@ import zero from './Global_Resources/number/0.png';
 import one from './Global_Resources/number/1.png';
 import two from './Global_Resources/number/2.png';
 import six from './Global_Resources/number/6.png';
+import mascot_list from './Home_Resources/mascot_list.json';
+
+function RandInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1) + min); //The maximum is inclusive and the minimum is inclusive
+  }
 
 export default class Home extends React.Component {
+    constructor(props) {
+        super(props);
+        this.CurrentMascotID = RandInt(0, mascot_list.length - 1);
+        this.state = {
+            mascot_data: mascot_list[this.CurrentMascotID],
+        };
+    }
+    SetMascot = () => {
+        switch(this.CurrentMascotID) {
+            case (mascot_list.length - 1):
+                this.CurrentMascotID = 0;
+                break;
+            default:
+                this.CurrentMascotID++;
+                break;
+        }
+        this.setState({ mascot_data: mascot_list[this.CurrentMascotID] });
+    }
     Messagebox = (title,text,icon) => {
         Swal.fire({title:title,text:text,icon:icon});
     }
@@ -17,6 +42,13 @@ export default class Home extends React.Component {
         <React.Fragment>
             <Helmet>
                 <title>e621</title>
+                <style>
+                    {`
+                        body {
+                            background-image: url(${this.state.mascot_data.imgurl});
+                        }
+                    `}
+                </style>
             </Helmet>
             <div id="a-home">
                 <div id="searchbox" className="mascotbox">
@@ -36,14 +68,12 @@ export default class Home extends React.Component {
                         <form action="https://e621.net/posts" acceptCharset="UTF-8" method="get">
                             <div>
                                 <input type="text" name="tags" id="tags" defaultValue="" size="30" autoFocus="autofocus" autoComplete="off"/><br/>
-                                <div style={{position:"relative"}}>
-                                    <input type="submit" class="smallbtn" value="Search" style={{marginRight:"5px",marginLeft:"-5px"}}/>
-                                    <input type="button" class="smallbtn" value="Change Mascot" id="change-mascot" style={{marginRight:"-5px", paddingLeft:"2px",paddingRight:"2px"}}/>
-                                </div>
+                                <input type="submit" class="smallbtn" value="Search" style={{marginRight:"5px",marginLeft:"-5px"}}/>
+                                <input type="button" class="smallbtn" value="Change Mascot" id="change-mascot" style={{marginRight:"-5px", paddingLeft:"2px",paddingRight:"2px"}} onClick={this.SetMascot}/>
                             </div>
                         </form>
                     </div>
-                    <div id="mascot_artist">Mascot by <a href="http://www.furaffinity.net/user/keishinkae">Keishinkae</a></div>
+                    <div id="mascot_artist">Mascot by <a href={this.state.mascot_data.author.profile}>{this.state.mascot_data.author.name}</a></div>
                 </div>
                 <div id="searchbox2" className="mascotbox">
                     <img src={two} alt="2"/>

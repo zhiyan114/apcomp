@@ -3,7 +3,6 @@ Default e621.net CSS
 Converted by zhiyan114 (兽迷第一)
 */
 body {
-    background-image: url("background.jpg");
     background-color: rgb(1, 46, 86);
     color: #ffffff;
     font-size: 85%;
@@ -85,6 +84,7 @@ body {
   }
   button, input[type="button"], input[type="submit"] {
     font-size: 13.7px;
+    cursor: pointer;
   }
   button:focus, input:focus, select:focus, textarea:focus {
     background-color: #ffffcd;
