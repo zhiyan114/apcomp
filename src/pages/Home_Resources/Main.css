@@ -68,7 +68,10 @@ body {
     text-decoration: none;
   }
   a:hover {
-    color: #e6f2fa;
+    color: #dae7ef;
+  }
+  a:active {
+    color: #f2c245;
   }
   button, input, select, textarea {
     border: 0;
@@ -79,6 +82,11 @@ body {
     background-color: #ffffcd;
     border: 0px none;
     outline: none;
+  }
+  img {
+    vertical-align: middle;
+    line-height: 17px;
+    padding: 2.5px;
   }
   /*
   br {

@@ -9,6 +9,9 @@ import two from './Global_Resources/number/2.png';
 import six from './Global_Resources/number/6.png';
 
 export default class Home extends React.Component {
+    Messagebox = (title,text,icon) => {
+        Swal.fire({title:title,text:text,icon:icon});
+    }
     render() {
         return (
         <React.Fragment>
@@ -21,18 +24,18 @@ export default class Home extends React.Component {
                         <a href="/" onClick={(e)=>{e.preventDefault(); Swal.fire({title:"Bruh",text:"This is a yiff site, to keep this project SFW, I wont redirect you", icon: "warning",confirmButtonText:"Fine Whatever"}); }}>e621</a>
                     </h1>
                     <div id="links">
-                        <a title="Login or sign up" href="https://e621.net/session/new">Login/Signup</a>
-                        <a title="A paginated list of every post" href="https://e621.net/posts">Posts</a>
-                        <a title="A paginated list of every comment" href="https://e621.net/comments">Comments</a>
-                        <a title="A paginated list of every tag" href="https://e621.net/tags">Tags</a>
-                        <a title="Wiki" href="https://e621.net/wiki_pages">Wiki</a>
-                        <a title="Forum" href="https://e621.net/forum_topics">Forum</a>
-                        <a title="A site map" href="https://e621.net/static/site_map">»</a>
+                        <a title="Login or sign up" href="https://e621.net/session/new" onClick={(e)=>{e.preventDefault(); this.Messagebox("Unavailable","Authentication Method Unavailable","error")}}>Login/Signup</a>
+                        <a title="A paginated list of every post" href="https://e621.net/posts" onClick={(e)=>{e.preventDefault(); this.Messagebox("Unavailable","Post Method Unavailable","error")}}>Posts</a>
+                        <a title="A paginated list of every comment" href="https://e621.net/comments" onClick={(e)=>{e.preventDefault(); this.Messagebox("Unavailable","Comment Method Unavailable","error")}}>Comments</a>
+                        <a title="A paginated list of every tag" href="https://e621.net/tags" onClick={(e)=>{e.preventDefault(); this.Messagebox("Unavailable","Tag Method Unavailable","error")}}>Tags</a>
+                        <a title="Wiki" href="https://e621.net/wiki_pages" onClick={(e)=>{e.preventDefault(); this.Messagebox("Unavailable","Wiki Method Unavailable","error")}}>Wiki</a>
+                        <a title="Forum" href="https://e621.net/forum_topics" onClick={(e)=>{e.preventDefault(); this.Messagebox("Unavailable","Forum Method Unavailable","error")}}>Forum</a>
+                        <a title="A site map" href="https://e621.net/static/site_map" onClick={(e)=>{e.preventDefault(); this.Messagebox("Unavailable","Site Map Method Unavailable","error")}}>»</a>
                     </div>
                     <div>
                         <form action="https://e621.net/posts" acceptCharset="UTF-8" method="get">
                             <div>
-                                <input type="text" name="tags" id="tags" defaultValue="" size="30" autoFocus="autofocus" data-autocomplete="tag-query" className="ui-autocomplete-input" autoComplete="off"/><br/>
+                                <input type="text" name="tags" id="tags" defaultValue="" size="30" autoFocus="autofocus" autoComplete="off"/><br/>
                                 <input type="submit" value="Search" style={{margin:"5px"}}/>
                                 <input type="button" value="Change Mascot" id="change-mascot"/>
                             </div>
@@ -40,22 +43,22 @@ export default class Home extends React.Component {
                     </div>
                     <div id="mascot_artist">Mascot by <a href="http://www.furaffinity.net/user/keishinkae">Keishinkae</a></div>
                 </div>
-                <div id="searchbox2" class="mascotbox">
-                    <img src={two}/>
-                    <img src={six}/>
-                    <img src={one}/>
-                    <img src={zero}/>
-                    <img src={two}/>
-                    <img src={zero}/>
-                    <img src={one}/>
+                <div id="searchbox2" className="mascotbox">
+                    <img src={two} alt="2"/>
+                    <img src={six} alt="6"/>
+                    <img src={one} alt="1"/>
+                    <img src={zero} alt="0"/>
+                    <img src={two} alt="2"/>
+                    <img src={zero} alt="0"/>
+                    <img src={one} alt="1"/>
                 </div>
-                <div id="searchbox3" class="mascotbox">
+                <div id="searchbox3" className="mascotbox">
                     <p>
                         Serving 2,610,201 posts<br/>
-                        <a title="Takedown Information" href="https://e621.net/static/takedown">Takedown Policy and Process</a>
+                        <a title="Takedown Information" href="/" onClick={(e)=>{e.preventDefault(); Swal.fire({title: "Nah",text: "This is some fair use stuff, DMCA aint workin here",icon: "error"})}}>Takedown Policy and Process</a>
                         |
-                        <a title="Contact Us" href="https://e621.net/static/contact">Contact Us</a> |
-                        <a title="Terms of Service" href="https://e621.net/static/terms_of_service">Terms of Service</a>
+                        <a title="Contact Us" href="/" onClick={(e)=>{e.preventDefault(); Swal.fire({title: "Help Me", html: `If you need help, contact me via email: <a href="mailto:zhiyan114@zhiyan114.com">zhiyan114@zhiyan114.com</a>`,icon:"info"})}}>Contact Us</a> |
+                        <a title="Terms of Service" href="/" onClick={(e)=>{e.preventDefault(); Swal.fire({title: "Terms of Condition", text: "By accessing this site, you acknowledge to only use it for any legal purposes",icon:"info"})}}>Terms of Service</a>
                     </p>
                 </div>
             </div>
