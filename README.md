@@ -5,11 +5,11 @@ Was orginally required to be written in python but wanted a frontend web design 
 
 # Usages
 Run the following command on a new setup
-* npm install
-* pip install [Lib Name for python later :P]
+* `npm install`
+* `pip install [Lib Name for python later :P]`
 
 Usages:
-* npm run start - development server for react app
-* npm run test - I will skip the unit testing because the frontend isn't that complicated...
-* npm run build - build a static frontend
-* npm run prodstart - Run the production server (building the frontend is required)
+* `npm run start` - development server for react app
+* `npm run test` - I will skip the unit testing because the frontend isn't that complicated...
+* `npm run build` - build a static frontend
+* `npm run prodstart` - Run the production server (building the frontend is required)
