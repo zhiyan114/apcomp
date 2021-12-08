@@ -4,9 +4,9 @@ My Internal Computer Science Project!
 Was orginally required to be written in python but wanted a frontend web design as e621 so ig I did both python (backend) and javascript (frontend).
 
 # Usages
-Run the following command for first time usages
-### npm install
-### pip install [Lib Name for python later :P]
+Run the following command on a new setup
+* npm install
+* pip install [Lib Name for python later :P]
 
 Usages:
 * npm run start - development server for react app
