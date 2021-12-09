@@ -7,7 +7,7 @@ export default class Main extends React.Component {
         return (
             <React.Fragment>
                 <Helmet>
-                    <title>Main - JS & PY</title>
+                    <title>Main - IMGSRV</title>
                     <style>
                         {`
                             body {

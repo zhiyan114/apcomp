@@ -8,7 +8,7 @@ export default class Error404 extends React.Component {
         return (
             <React.Fragment>
                 <Helmet>
-                    <title>404 - JS & PY</title>
+                    <title>404 - IMGSRV</title>
                     <style>
                         {`
                             body {

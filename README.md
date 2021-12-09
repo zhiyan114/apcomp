@@ -6,7 +6,7 @@ Was orginally required to be written in python but wanted a frontend web design 
 # Usages
 Run the following command on a new setup
 * `npm install`
-* `pip install [Lib Name for python later :P]`
+* `pip install Flask requests`
 
 Usages:
 * `npm run start` - development server for react app

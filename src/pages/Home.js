@@ -42,7 +42,7 @@ export default class Home extends React.Component {
         return (
         <React.Fragment>
             <Helmet>
-                <title>e621</title>
+                <title>IMGSRV</title>
                 
                 <style>
                     {`
@@ -55,7 +55,7 @@ export default class Home extends React.Component {
             <div id="a-home">
                 <div id="searchbox" className="mascotbox">
                     <h1 style={{fontSize: "4em",paddingBottom: "2px", paddingTop:"1.5px"}}>
-                        <a href="/">JS & PY</a>
+                        <a href="/">IMGSRV</a>
                     </h1>
                     <div id="links">
                         <a title="Login or sign up" href="https://e621.net/session/new" onClick={(e)=>{e.preventDefault(); this.Messagebox("Unavailable","Authentication Method Unavailable","error")}}>Login/Signup</a>
@@ -67,9 +67,9 @@ export default class Home extends React.Component {
                         <a title="A site map" href="https://e621.net/static/site_map" onClick={(e)=>{e.preventDefault(); this.Messagebox("Unavailable","Site Map Method Unavailable","error")}}>»</a>
                     </div>
                     <div>
-                        <form action="https://e621.net/posts" acceptCharset="UTF-8" method="get">
+                        <form action="/main" acceptCharset="UTF-8" method="get">
                             <div>
-                                <input type="text" name="tags" id="tags" defaultValue="" size="30" autoFocus="autofocus" autoComplete="off"/><br/>
+                                <input type="text" name="keyword" id="keyword" defaultValue="" size="30" autoFocus="autofocus" autoComplete="off"/><br/>
                                 <input type="submit" value="Search" style={{marginRight:"5px",marginLeft:"-5px"}}/>
                                 <input type="button" value="Change Mascot" id="change-mascot" style={{marginRight:"-5px", paddingLeft:"2px",paddingRight:"2px"}} onClick={this.SetMascot}/>
                             </div>
