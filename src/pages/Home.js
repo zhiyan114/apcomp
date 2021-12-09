@@ -1,12 +1,13 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import Swal from 'sweetalert2';
-import HomeStyle from './Home_Resources/Main.css';
+import './Home_Resources/Main.css';
 
 import zero from './Global_Resources/number/0.png';
-import one from './Global_Resources/number/1.png';
 import two from './Global_Resources/number/2.png';
+import four from './Global_Resources/number/4.png';
 import six from './Global_Resources/number/6.png';
+import nine from './Global_Resources/number/9.png';
 import mascot_list from './Home_Resources/mascot_list.json';
 
 function RandInt(min, max) {
@@ -54,7 +55,7 @@ export default class Home extends React.Component {
             <div id="a-home">
                 <div id="searchbox" className="mascotbox">
                     <h1 style={{fontSize: "4em",paddingBottom: "2px", paddingTop:"1.5px"}}>
-                        <a href="/" onClick={(e)=>{e.preventDefault(); Swal.fire({title:"Bruh",text:"This is a yiff site, to keep this project SFW, I wont redirect you", icon: "warning",confirmButtonText:"Fine Whatever"}); }}>e621</a>
+                        <a href="/" onClick={(e)=>{e.preventDefault();}}>JS & PY</a>
                     </h1>
                     <div id="links">
                         <a title="Login or sign up" href="https://e621.net/session/new" onClick={(e)=>{e.preventDefault(); this.Messagebox("Unavailable","Authentication Method Unavailable","error")}}>Login/Signup</a>
@@ -69,24 +70,22 @@ export default class Home extends React.Component {
                         <form action="https://e621.net/posts" acceptCharset="UTF-8" method="get">
                             <div>
                                 <input type="text" name="tags" id="tags" defaultValue="" size="30" autoFocus="autofocus" autoComplete="off"/><br/>
-                                <input type="submit" class="smallbtn" value="Search" style={{marginRight:"5px",marginLeft:"-5px"}}/>
-                                <input type="button" class="smallbtn" value="Change Mascot" id="change-mascot" style={{marginRight:"-5px", paddingLeft:"2px",paddingRight:"2px"}} onClick={this.SetMascot}/>
+                                <input type="submit" value="Search" style={{marginRight:"5px",marginLeft:"-5px"}}/>
+                                <input type="button" value="Change Mascot" id="change-mascot" style={{marginRight:"-5px", paddingLeft:"2px",paddingRight:"2px"}} onClick={this.SetMascot}/>
                             </div>
                         </form>
                     </div>
                     <div id="mascot_artist">Mascot by <a href={this.state.mascot_data.author.profile}>{this.state.mascot_data.author.name}</a></div>
                 </div>
                 <div id="searchbox2" className="mascotbox">
-                    <img src={two} alt="2"/>
                     <img src={six} alt="6"/>
-                    <img src={one} alt="1"/>
-                    <img src={zero} alt="0"/>
+                    <img src={nine} alt="9"/>
+                    <img src={four} alt="4"/>
                     <img src={two} alt="2"/>
                     <img src={zero} alt="0"/>
-                    <img src={one} alt="1"/>
                 </div>
                 <div id="searchbox3" className="mascotbox">
-                    <p style={{marginBottom:"-12px"}}>Serving 2,610,201 posts</p>
+                    <p style={{marginBottom:"-12px"}}>Serving 69,420 posts</p>
                     <p style={{ marginBottom:"1px"}}>
                         <br/>
                         <a title="Takedown Information" href="/" onClick={(e)=>{e.preventDefault(); Swal.fire({title: "Nah",text: "This is some fair use stuff, DMCA aint workin here",icon: "error"})}}>Takedown Policy and Process</a>
