@@ -2,6 +2,7 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import HexBody from './Global_Resources/BodyHex.png';
 import './404_Resources/404.css';
+import Topbar from '../component/topbar';
 export default class Error404 extends React.Component {
     render() {
         return (
@@ -18,6 +19,7 @@ export default class Error404 extends React.Component {
                         `}
                     </style>
                 </Helmet>
+                <Topbar/>
                 <div className="Container404">
                     <h1 className="Title404">404</h1>
                     <h2 className="Subtitle404">Page not found</h2>
