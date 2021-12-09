@@ -1,16 +1,31 @@
 import React from 'react';
+import Helmet from 'react-helmet';
+import HexBody from './Global_Resources/BodyHex.png';
+import './404_Resources/404.css';
 export default class Error404 extends React.Component {
     render() {
         return (
-            <div className="error-404">
-                <div className="error-404__content">
-                    <h1 className="error-404__title">404</h1>
-                    <h2 className="error-404__subtitle">Page not found</h2>
-                    <p className="error-404__text">
-                        The page you are looking for does not exist.
+            <React.Fragment>
+                <Helmet>
+                    <title>404</title>
+                    <style>
+                        {`
+                            body {
+                                background-color: #020f23;
+                                background-image: url(${HexBody});
+                            }
+                            
+                        `}
+                    </style>
+                </Helmet>
+                <div className="Container404">
+                    <h1 className="Title404">404</h1>
+                    <h2 className="Subtitle404">Page not found</h2>
+                    <p className="Body404">
+                        The page you are looking for does not exist. Please check the URL again or go back to the <a href="/">homepage</a>.
                     </p>
                 </div>
-            </div>
+            </React.Fragment>
         );
     }
 }

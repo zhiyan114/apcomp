@@ -1,0 +1,28 @@
+.Container404 {
+    min-width: 500px;
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2.5rem
+  }
+  @media (max-width: 500px) {
+    .Container404 {
+      min-width: 90%;
+    }
+  }
+.Title404 {
+    font-size: 6rem;
+    font-weight: bold;
+    margin-bottom: 0;
+}
+.Subtitle404 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 3rem;
+}
+.Body404 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}

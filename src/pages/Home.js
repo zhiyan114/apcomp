@@ -1,7 +1,7 @@
 import React from 'react';
 import Helmet from 'react-helmet';
-import './Home_Resources/Main.css';
 import Swal from 'sweetalert2';
+import HomeStyle from './Home_Resources/Main.css';
 
 import zero from './Global_Resources/number/0.png';
 import one from './Global_Resources/number/1.png';
@@ -13,11 +13,11 @@ function RandInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1) + min); //The maximum is inclusive and the minimum is inclusive
-  }
-
+}
 export default class Home extends React.Component {
     constructor(props) {
         super(props);
+        document.body.className = "Homebody";
         this.CurrentMascotID = RandInt(0, mascot_list.length - 1);
         this.state = {
             mascot_data: mascot_list[this.CurrentMascotID],
@@ -42,6 +42,7 @@ export default class Home extends React.Component {
         <React.Fragment>
             <Helmet>
                 <title>e621</title>
+                
                 <style>
                     {`
                         body {
