@@ -13,17 +13,20 @@ import mascot_list from './Home_Resources/mascot_list.json';
 function RandInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1) + min); //The maximum is inclusive and the minimum is inclusive
+    let GenVal = Math.floor(Math.random() * (max - min + 1) + min);
+    // Introduced a check to prevent the values from getting lower than min or higher than max (since the result has exceeded the max value before)
+    if(GenVal < min) {
+        GetVal = min;
+    } else if(GenVal > max) {
+        GetVal = max;
+    }
+    return GenVal;
 }
 export default class Home extends React.Component {
     constructor(props) {
         super(props);
         document.body.className = "Homebody";
         this.CurrentMascotID = localStorage.getItem("MascotID") || RandInt(0, mascot_list.length - 1);
-        if(this.CurrentMascotID > mascot_list.length - 1) {
-            // How tf this happen? My index randomly went to 8 so I just added this check in-case the RandInt does go above the "max" value.
-            this.CurrentMascotID = RandInt(0, mascot_list.length - 1);
-        }
         this.state = {
             mascot_data: mascot_list[this.CurrentMascotID],
         };
