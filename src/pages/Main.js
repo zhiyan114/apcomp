@@ -6,6 +6,7 @@ import Sidebar from '../component/sidebar';
 import './Main_Resources/Main.css';
 
 import Footer from '../component/footer';
+import Swal from 'sweetalert2';
 export default class Main extends React.Component {
     constructor(props) {
         super(props);
@@ -17,6 +18,26 @@ export default class Main extends React.Component {
     componentDidMount() {
         let keyword = new URLSearchParams(window.location.search).get("keyword");
         let SearchHistory = (JSON.parse(localStorage.getItem("SearchHistory")) || []);
+        let count = 0;
+        if(!/\S/.test(keyword)) {
+            SearchHistory = SearchHistory.map(item=>{
+                count++;
+                return {
+                    name: item,
+                    count: count
+                }
+            });
+            this.setState({
+                Keyword: keyword,
+                SearchHistory: SearchHistory
+            });
+            Swal.fire({
+                title:"Invalid Search Field",
+                text:"Your search field cannot be empty nor whitespace",
+                icon:"error"
+            });
+            return;
+        }
         switch(SearchHistory.length) {
             case 10:
                 SearchHistory.pop();
@@ -27,7 +48,6 @@ export default class Main extends React.Component {
                 break;
         }
         localStorage.setItem("SearchHistory",JSON.stringify(SearchHistory));
-        let count = 0;
         SearchHistory = SearchHistory.map(item=>{
             count++;
             return {
