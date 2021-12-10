@@ -1,10 +1,10 @@
 [
-    {"imgurl":"https://static1.e621.net/data/mascot_bg/esix2.jpg","author":{"name":"Keishinkae","profile":"http://www.furaffinity.net/user/keishinkae"}},
-    {"imgurl":"https://static1.e621.net/data/mascot_bg/raptor1.jpg","author":{"name":"darkdoomer","profile":"http://nowhereincoming.net/"}},
-    {"imgurl":"https://static1.e621.net/data/mascot_bg/hexerade.jpg","author":{"name":"chizi","profile":"http://www.furaffinity.net/user/chizi"}},
-    {"imgurl":"https://static1.e621.net/data/mascot_bg/wiredhooves.jpg","author":{"name":"wiredhooves","profile":"http://www.furaffinity.net/user/wiredhooves"}},
-    {"imgurl":"https://static1.e621.net/data/mascot_bg/ecmajor.jpg","author":{"name":"ECMajor","profile":"http://www.horsecore.org/"}},
-    {"imgurl":"https://static1.e621.net/data/mascot_bg/evalionfix.jpg","author":{"name":"evalion","profile":"http://www.furaffinity.net/user/evalion"}},
-    {"imgurl":"https://static1.e621.net/data/mascot_bg/peacock.png","author":{"name":"Ratte","profile":"http://www.furaffinity.net/user/ratte"}},
-    {"imgurl":"https://static1.e621.net/data/mascot_bg/esix1.jpg","author":{"name":"Keishinkae","profile":"http://www.furaffinity.net/user/keishinkae"}}
+    {"imgurl":"/images/esix2.jpg","author":{"name":"Keishinkae","profile":"http://www.furaffinity.net/user/keishinkae"}},
+    {"imgurl":"/images/raptor1.jpg","author":{"name":"darkdoomer","profile":"http://nowhereincoming.net/"}},
+    {"imgurl":"/images/hexerade.jpg","author":{"name":"chizi","profile":"http://www.furaffinity.net/user/chizi"}},
+    {"imgurl":"/images/wiredhooves.jpg","author":{"name":"wiredhooves","profile":"http://www.furaffinity.net/user/wiredhooves"}},
+    {"imgurl":"/images/ecmajor.jpg","author":{"name":"ECMajor","profile":"http://www.horsecore.org/"}},
+    {"imgurl":"/images/evalionfix.jpg","author":{"name":"evalion","profile":"http://www.furaffinity.net/user/evalion"}},
+    {"imgurl":"/images/peacock.png","author":{"name":"Ratte","profile":"http://www.furaffinity.net/user/ratte"}},
+    {"imgurl":"/images/esix1.jpg","author":{"name":"Keishinkae","profile":"http://www.furaffinity.net/user/keishinkae"}}
 ]
