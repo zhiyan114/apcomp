@@ -20,9 +20,14 @@ export default class Home extends React.Component {
         super(props);
         document.body.className = "Homebody";
         this.CurrentMascotID = localStorage.getItem("MascotID") || RandInt(0, mascot_list.length - 1);
+        if(this.CurrentMascotID > mascot_list.length - 1) {
+            // How tf this happen? My index randomly went to 8 so I just added this check in-case the RandInt does go above the "max" value.
+            this.CurrentMascotID = RandInt(0, mascot_list.length - 1);
+        }
         this.state = {
             mascot_data: mascot_list[this.CurrentMascotID],
         };
+        console.log(this.state.mascot_data)
     }
     SetMascot = () => {
         switch(this.CurrentMascotID) {
