@@ -6,26 +6,25 @@ import Swal from 'sweetalert2'
 
 export default class Sidebar extends React.Component {
     RenderHistory = () => {
-        const ulist = <li class="history-item"/>
-        const items = this.props.HistoryItems || [{}]
-        return (
-            <ul>
-                        <li class="history-item">
-                            <a class="wiki-link" rel="nofollow" href="/" onClick={(e)=>{e.preventDefault();}}>?</a>
-                            <a class="search-inc-tag" rel="nofollow" href="/" onClick={(e)=>{e.preventDefault();}}>+</a>
-                            <a class="search-inl-tag" rel="nofollow" href="/" onClick={(e)=>{e.preventDefault();}}>–</a>
-                            <a class="history-tag" rel="nofollow" href="/" onClick={(e)=>{e.preventDefault();}}>a</a>
-                            <span class="color-muted">0</span>
-                        </li>
-                    </ul>
-        )
+        return (this.props.HistoryItems || [{name:"e621",count: '69K'}]).map((item)=>{
+            item = (
+                <li className="history-item">
+                    <a className="wiki-link" rel="nofollow" href="/" onClick={(e)=>{e.preventDefault();}}>?</a>
+                    <a className="search-inc-tag" rel="nofollow" href="/" onClick={(e)=>{e.preventDefault();}}>+</a>
+                    <a className="search-inl-tag" rel="nofollow" href="/" onClick={(e)=>{e.preventDefault();}}>–</a>
+                    <a className="history-tag" rel="nofollow" href="/" onClick={(e)=>{e.preventDefault();}}>{item.name}</a>
+                    <span className="color-muted">{item.count}</span>
+                </li>
+            )
+            return item
+        })
     }
     render() {
         return (
             <aside className="sidebar">
                 <section className="search">
-                    <h1>
-                        <span style={{paddingBottom:"10px"}}>Search</span>
+                    <h1 style={{marginBottom:"1px"}}>
+                        <span>Search</span>
                         <span className="search-help"><a href="/" onClick={(e)=>{e.preventDefault();}}>(search help)</a></span>
                     </h1>
                     <form action="/main" method="get">
@@ -46,13 +45,15 @@ export default class Sidebar extends React.Component {
                 </section>
                 <section className="history">
                     <h1>History</h1>
-                    {this.RenderHistory()}
+                    <ul className="history-item">
+                        {this.RenderHistory()}
+                    </ul>
                 </section>
                 <section className="related">
                     <h1>Related</h1>
                     <ul>
-                        <li class="related-item">
-                            <a class="wiki-link" rel="nofollow" href="/" onClick={(e)=>{e.preventDefault();}}>Random</a>
+                        <li className="related-item">
+                            <a className="wiki-link" rel="nofollow" href="/" onClick={(e)=>{e.preventDefault();}}>Random</a>
                         </li>
                     </ul>
                 </section>
