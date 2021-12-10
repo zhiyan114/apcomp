@@ -9,8 +9,36 @@ import Footer from '../component/footer';
 export default class Main extends React.Component {
     constructor(props) {
         super(props);
-        console.log(props.location);
-        this.Keyword = new URLSearchParams(window.location.search).get("keyword");
+        this.state = {
+            Keyword: "",
+            SearchHistory: []
+        }
+    }
+    componentDidMount() {
+        let keyword = new URLSearchParams(window.location.search).get("keyword");
+        let SearchHistory = (JSON.parse(localStorage.getItem("SearchHistory")) || []);
+        switch(SearchHistory.length) {
+            case 10:
+                SearchHistory.pop();
+                SearchHistory.splice(0,0,keyword);
+                break;
+            default:
+                SearchHistory.splice(0,0,keyword);
+                break;
+        }
+        localStorage.setItem("SearchHistory",JSON.stringify(SearchHistory));
+        let count = 0;
+        SearchHistory = SearchHistory.map(item=>{
+            count++;
+            return {
+                name: item,
+                count: count
+            }
+        });
+        this.setState({
+            Keyword: keyword,
+            SearchHistory: SearchHistory
+        });
     }
     render() {
         return (
@@ -29,7 +57,7 @@ export default class Main extends React.Component {
                 </Helmet>
                 <Topbar/>
                 <div className="mainpage">
-                    <Sidebar SearchVal={this.Keyword} HistoryItems={[{name:"TEST", count:"100K"}]}/>
+                    <Sidebar SearchVal={this.state.Keyword} HistoryItems={this.state.SearchHistory}/>
                     <section className="content">
                         <p>Content</p>
                     </section>

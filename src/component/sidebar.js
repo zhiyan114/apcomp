@@ -8,7 +8,7 @@ export default class Sidebar extends React.Component {
     RenderHistory = () => {
         return (this.props.HistoryItems || [{name:"e621",count: '69K'}]).map((item)=>{
             item = (
-                <li className="history-item" key={`history_${item.name}`}>
+                <li className="history-item" key={`history_${item.name}_${Math.random()}`}>
                     <a className="wiki-link" rel="nofollow" href="/" onClick={(e)=>{e.preventDefault();}}>?</a>
                     <a className="search-inc-tag" rel="nofollow" href="/" onClick={(e)=>{e.preventDefault();}}>+</a>
                     <a className="search-inl-tag" rel="nofollow" href="/" onClick={(e)=>{e.preventDefault();}}>–</a>
@@ -34,7 +34,7 @@ export default class Sidebar extends React.Component {
                 </section>
                 <section className="mode">
                     <h1>Mode</h1>
-                    <select name="mode" id="mode" onChange={()=>{Swal.fire({title:"Demo Only",text:"This textbox are for demostration purposes, nothing will happen",icon:"info"})}}>
+                    <select name="mode" id="mode" onChange={()=>{Swal.fire({title:"Demo Only",text:"This dropdown are for demostration purposes, nothing will happen",icon:"info"})}}>
                         <option>View</option>
                         <option>Edit</option>
                         <option>Favorite</option>
