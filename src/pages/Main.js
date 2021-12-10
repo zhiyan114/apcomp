@@ -2,6 +2,7 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import HexBody from './Global_Resources/BodyHex.png';
 import Topbar from '../component/topbar';
+import Sidebar from '../component/sidebar';
 import './Main_Resources/Main.css';
 
 import Footer from '../component/footer';
@@ -23,7 +24,12 @@ export default class Main extends React.Component {
                 </Helmet>
                 <Topbar/>
                 <div className="mainpage">
-                    <p>Container Stuff</p>
+                    <Sidebar/>
+                    <section className="content">
+                        <p>Content</p>
+                        <p>Content</p>
+                        <p>Content</p>
+                    </section>
                 </div>
                 <Footer/>
             </React.Fragment>

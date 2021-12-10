@@ -3,8 +3,10 @@
     background-image: url("../Global_Resources/SmallHex.png");
     background-repeat: repeat-x;
     margin: 0 1rem;
-    overflow: visible;
     padding: 0.5rem;
     border-radius: 6px;
     margin-top: 13px;
+}
+.content {
+    float: right;
 }
