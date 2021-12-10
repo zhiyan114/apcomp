@@ -2,6 +2,9 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import HexBody from './Global_Resources/BodyHex.png';
 import Topbar from '../component/topbar';
+import './Main_Resources/Main.css';
+
+import Footer from '../component/footer';
 export default class Main extends React.Component {
     render() {
         return (
@@ -19,6 +22,10 @@ export default class Main extends React.Component {
                     </style>
                 </Helmet>
                 <Topbar/>
+                <div className="mainpage">
+                    <p>Container Stuff</p>
+                </div>
+                <Footer/>
             </React.Fragment>
         )
     }

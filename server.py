@@ -55,5 +55,6 @@ def api_search_history():
 
 
 if __name__ == "__main__":
+    print("backend executed")
     app.run()
 
