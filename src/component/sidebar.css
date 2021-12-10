@@ -1,19 +1,56 @@
 .sidebar {
-    float: left;
     left: 0;
     top: 0;
     width: 15em;
     padding-right: 1em;
 }
 .search {
+    width: 100%;
 }
 .search button[type="submit"] {
     background: #eee;
-    border: 1px solid #ccc;
+    border-left: 1px solid #ccc;
     border-radius: 0 3px 3px 0;
-    vertical-align: middle;
     width: 2em;
     min-width: 0;
+    padding: 2px 6px;
+    vertical-align: middle;
+}
+h1 {
+    font-size: 1.16667em;
+    line-height: 1.25em;
+}
+section {
+    margin-bottom: 12px;
+}
+.mode select {
+    width: 15.3em;
+    border-radius: 2px;
+    padding: 1px 2px 1px;
+    vertical-align: top;
+}
+.history ul {
+    list-style-type:none;
+}
+.history li {
+    vertical-align: middle;
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+.history-item a:hover {
+    color: #0078b4;
+}
+.wiki-link {
+    margin-right: 0.3em;
+}
+.search-inc-tag, .search-exl-tag, .history-tag {
+    margin: 0 0.35em;
+}
+.color-muted {
+    color: #999;
+    margin-left: 0.2em;
+    font-size: 85%;
 }
 .search input[type="text"] {
     border-radius: 3px 0 0 3px;
@@ -21,11 +58,15 @@
     box-sizing: border-box;
     padding: 0.125rem;
     position: relative;
-    width: 13em;
+    width: 13.24em;
     z-index: 1;
+    vertical-align: middle;
 }
 .search-help {
     float: right;
-    
     font-size: 70%;
+}
+
+.related-item {
+    list-style-type:none;
 }

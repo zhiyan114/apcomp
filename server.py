@@ -1,4 +1,3 @@
-from re import search
 import flask
 import os
 import requests

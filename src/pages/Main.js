@@ -27,8 +27,6 @@ export default class Main extends React.Component {
                     <Sidebar/>
                     <section className="content">
                         <p>Content</p>
-                        <p>Content</p>
-                        <p>Content</p>
                     </section>
                 </div>
                 <Footer/>
