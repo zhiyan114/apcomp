@@ -7,6 +7,11 @@ import './Main_Resources/Main.css';
 
 import Footer from '../component/footer';
 export default class Main extends React.Component {
+    constructor(props) {
+        super(props);
+        console.log(props.location);
+        this.Keyword = new URLSearchParams(window.location.search).get("keyword");
+    }
     render() {
         return (
             <React.Fragment>
@@ -24,7 +29,7 @@ export default class Main extends React.Component {
                 </Helmet>
                 <Topbar/>
                 <div className="mainpage">
-                    <Sidebar/>
+                    <Sidebar SearchVal={this.Keyword} HistoryItems={[{name:"TEST", count:"100K"}]}/>
                     <section className="content">
                         <p>Content</p>
                     </section>

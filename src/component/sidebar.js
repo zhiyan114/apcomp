@@ -8,11 +8,11 @@ export default class Sidebar extends React.Component {
     RenderHistory = () => {
         return (this.props.HistoryItems || [{name:"e621",count: '69K'}]).map((item)=>{
             item = (
-                <li className="history-item">
+                <li className="history-item" key={`history_${item.name}`}>
                     <a className="wiki-link" rel="nofollow" href="/" onClick={(e)=>{e.preventDefault();}}>?</a>
                     <a className="search-inc-tag" rel="nofollow" href="/" onClick={(e)=>{e.preventDefault();}}>+</a>
                     <a className="search-inl-tag" rel="nofollow" href="/" onClick={(e)=>{e.preventDefault();}}>–</a>
-                    <a className="history-tag" rel="nofollow" href="/" onClick={(e)=>{e.preventDefault();}}>{item.name}</a>
+                    <a className="history-tag" rel="nofollow" href={`/main?keyword=${item.name}`}>{item.name}</a>
                     <span className="color-muted">{item.count}</span>
                 </li>
             )
@@ -25,10 +25,10 @@ export default class Sidebar extends React.Component {
                 <section className="search">
                     <h1 style={{marginBottom:"1px"}}>
                         <span>Search</span>
-                        <span className="search-help"><a href="/" onClick={(e)=>{e.preventDefault();}}>(search help)</a></span>
+                        <span className="search-help"><a href="/" onClick={(e)=>{e.preventDefault(); Swal.fire({title:"Search Help",text:"Type some keyword to search images using google search API",icon:'info'})}}>(search help)</a></span>
                     </h1>
                     <form action="/main" method="get">
-                        <input type="text" id="keyword" name="keyword" />
+                        <input type="text" id="keyword" name="keyword" defaultValue={this.props.SearchVal || ""}/>
                         <button type="submit"><FontAwesomeIcon icon={faSearch}/></button>
                     </form>
                 </section>
