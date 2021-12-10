@@ -19,7 +19,7 @@ export default class Home extends React.Component {
     constructor(props) {
         super(props);
         document.body.className = "Homebody";
-        this.CurrentMascotID = RandInt(0, mascot_list.length - 1);
+        this.CurrentMascotID = localStorage.getItem("MascotID") || RandInt(0, mascot_list.length - 1);
         this.state = {
             mascot_data: mascot_list[this.CurrentMascotID],
         };
@@ -33,6 +33,7 @@ export default class Home extends React.Component {
                 this.CurrentMascotID++;
                 break;
         }
+        localStorage.setItem("MascotID", this.CurrentMascotID);
         this.setState({ mascot_data: mascot_list[this.CurrentMascotID] });
     }
     Messagebox = (title,text,icon) => {
