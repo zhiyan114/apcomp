@@ -13,24 +13,23 @@ import mascot_list from './Home_Resources/mascot_list.json';
 function RandInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
-    let GenVal = Math.floor(Math.random() * (max - min + 1) + min);
-    // Introduced a check to prevent the values from getting lower than min or higher than max (since the result has exceeded the max value before)
-    if(GenVal < min) {
-        GetVal = min;
-    } else if(GenVal > max) {
-        GetVal = max;
+    return Math.floor(Math.random() * (max - min + 1) + min);
+}
+function ConvertToInt(str) {
+    const val = parseInt(str);
+    if(isNaN(val)) {
+        return;
     }
-    return GenVal;
+    return val;
 }
 export default class Home extends React.Component {
     constructor(props) {
         super(props);
         document.body.className = "Homebody";
-        this.CurrentMascotID = localStorage.getItem("MascotID") || RandInt(0, mascot_list.length - 1);
+        this.CurrentMascotID = ConvertToInt(localStorage.getItem("MascotID")) || RandInt(0, mascot_list.length - 1);
         this.state = {
             mascot_data: mascot_list[this.CurrentMascotID],
         };
-        console.log(this.state.mascot_data)
     }
     SetMascot = () => {
         switch(this.CurrentMascotID) {
@@ -38,6 +37,7 @@ export default class Home extends React.Component {
                 this.CurrentMascotID = 0;
                 break;
             default:
+
                 this.CurrentMascotID++;
                 break;
         }
