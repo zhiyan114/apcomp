@@ -1,0 +1,31 @@
+.sidebar {
+    float: left;
+    left: 0;
+    top: 0;
+    width: 15em;
+    padding-right: 1em;
+}
+.search {
+}
+.search button[type="submit"] {
+    background: #eee;
+    border: 1px solid #ccc;
+    border-radius: 0 3px 3px 0;
+    vertical-align: middle;
+    width: 2em;
+    min-width: 0;
+}
+.search input[type="text"] {
+    border-radius: 3px 0 0 3px;
+    border-right: 0;
+    box-sizing: border-box;
+    padding: 0.125rem;
+    position: relative;
+    width: 13em;
+    z-index: 1;
+}
+.search-help {
+    float: right;
+    
+    font-size: 70%;
+}
