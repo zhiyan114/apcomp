@@ -7,6 +7,7 @@ app = flask.Flask(__name__)
 
 search_history = []
 
+# Manual Static Service
 @app.route("/")
 def index():
     return flask.send_from_directory('./build',"index.html")
@@ -19,7 +20,10 @@ def staticjs_file(path):
 @app.route("/static/css/<path:path>")
 def staticcss_file(path):
     return flask.send_from_directory('./build/static/css',path)
-    
+@app.route("/images/<path:path>")
+def staticimg_file(path):
+    return flask.send_from_directory('./build/images',path)
+# Actual API lmao
 @app.route('/api/search', methods=['POST'])
 def api_test():
     req_data = flask.request
