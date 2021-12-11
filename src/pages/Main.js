@@ -16,7 +16,7 @@ export default class Main extends React.Component {
         }
     }
     componentDidMount() {
-        let keyword = new URLSearchParams(window.location.search).get("keyword");
+        let keyword = new URLSearchParams(window.location.search).get("keyword") || "";
         let SearchHistory = (JSON.parse(localStorage.getItem("SearchHistory")) || []);
         let count = 0;
         if(!/\S/.test(keyword)) {
