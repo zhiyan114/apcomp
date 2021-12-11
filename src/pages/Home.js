@@ -37,7 +37,6 @@ export default class Home extends React.Component {
                 this.CurrentMascotID = 0;
                 break;
             default:
-
                 this.CurrentMascotID++;
                 break;
         }
