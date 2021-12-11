@@ -79,7 +79,20 @@ export default class Main extends React.Component {
                 <div className="mainpage">
                     <Sidebar SearchVal={this.state.Keyword} HistoryItems={this.state.SearchHistory}/>
                     <section className="content">
-                        <p>Content</p>
+                        <div className="main-container">
+                            <div class="main-column">
+                                <h1>Test</h1>
+                            </div>
+                            <div class="main-column">
+                                <h1>Test</h1>
+                            </div>
+                            <div class="main-column">
+                                <h1>Test</h1>
+                            </div>
+                            <div class="main-column">
+                                <h1>Test</h1>
+                            </div>
+                        </div>
                     </section>
                 </div>
                 <Footer/>
