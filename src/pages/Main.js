@@ -76,17 +76,18 @@ export default class Main extends React.Component {
             signal: CancelSignal.signal,
         }).then(res=>res.json()).then(res=>{
             if(res && res.data) {
-                this.setState({
-                    ImageLists: res.data
-                });
+                CancelSignal = null;
                 if(res.data.length === 0) {
                     Swal.fire({
                         title:"No Result Found",
                         text:"Your search did not return any result",
                         icon:"error"
                     });
+                    return;
                 }
-                CancelSignal = null;
+                this.setState({
+                    ImageLists: res.data
+                });
             } else {
                 Swal.fire({
                     title:"Error",
