@@ -91,7 +91,7 @@ div,h1,h2,h3,h4,h5,h6,p,ul,li,dd,dt {
     border: 0px none;
     outline: none;
   }
-  .Homebody button:focus {
+  .Homebody#root button:focus {
     background-color: #ffffcd;
     border: 0px none;
     outline: none;
