@@ -70,6 +70,9 @@ export default class Main extends React.Component {
             headers: {
                 "Content-Type": "application/json"
             },
+            body: JSON.stringify({
+                keyword: keyword
+            }),
             signal: CancelSignal.signal,
         }).then(res=>res.json()).then(res=>{
             if(res.status === "success") {
