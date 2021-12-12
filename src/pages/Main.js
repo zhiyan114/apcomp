@@ -75,7 +75,7 @@ export default class Main extends React.Component {
             }),
             signal: CancelSignal.signal,
         }).then(res=>res.json()).then(res=>{
-            if(res.status === "success") {
+            if(res && res.data) {
                 this.setState({
                     ImageLists: res.data
                 });
