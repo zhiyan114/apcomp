@@ -86,7 +86,12 @@ div,h1,h2,h3,h4,h5,h6,p,ul,li,dd,dt {
     font-size: 13.7px;
     cursor: pointer;
   }
-  button:focus, input:focus, select:focus, textarea:focus {
+   input:focus, select:focus, textarea:focus {
+    background-color: #ffffcd;
+    border: 0px none;
+    outline: none;
+  }
+  .Homebody button:focus {
     background-color: #ffffcd;
     border: 0px none;
     outline: none;
