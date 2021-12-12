@@ -15,7 +15,8 @@ export default class Main extends React.Component {
         super(props);
         this.state = {
             Keyword: "",
-            SearchHistory: []
+            SearchHistory: [],
+            ImageLists: []
         }
     }
     componentDidMount() {
@@ -62,67 +63,59 @@ export default class Main extends React.Component {
             Keyword: keyword,
             SearchHistory: SearchHistory
         });
+        // POST Request to /api/search
+        let CancelSignal = new AbortController();
+        fetch("/api/search",{
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            signal: CancelSignal.signal,
+        }).then(res=>res.json()).then(res=>{
+            if(res.status === "success") {
+                this.setState({
+                    ImageLists: res.data
+                });
+                CancelSignal = null;
+            } else {
+                Swal.fire({
+                    title:"Error",
+                    text:"Unable to perform image search",
+                    icon:"error"
+                });
+                CancelSignal = null;
+            }
+        }).catch(err=>{
+            Swal.fire({
+                title:"Error",
+                text:"Unable to perform image search",
+                icon:"error"
+            });
+            CancelSignal = null;
+        });
+        setTimeout(()=>{
+            if(CancelSignal) {
+                CancelSignal.abort();
+                Swal.fire({
+                    title:"Timeout",
+                    text:"The search request has timed out for 10 seconds. Please try again.",
+                    icon:"error"
+                });
+            }
+        },10000);
     }
-    RenderImage(kword) {
-        const demo_stuff = [
-            {
-                title: "Test",
-                imgurl: "https://images.unsplash.com/photo-1549740425-5e9ed4d8cd34?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
-                contexturl: "https://www.google.com/search?q=test"
-            },
-            {
-                title: "Test2",
-                imgurl: "https://i.pinimg.com/originals/e5/a6/06/e5a60682df253641c4e49b9feebef3be.jpg",
-                contexturl: "https://www.google.com/search?q=test2"
-            },
-            {
-                title: "Test3",
-                imgurl: "https://i.pinimg.com/originals/e5/a6/06/e5a60682df253641c4e49b9feebef3be.jpg",
-                contexturl: "https://www.google.com/search?q=test3"
-            },
-            {
-                title: "Test4",
-                imgurl: "https://i.pinimg.com/originals/e5/a6/06/e5a60682df253641c4e49b9feebef3be.jpg",
-                contexturl: "https://www.google.com/search?q=test4"
-            },
-            {
-                title: "Test5",
-                imgurl: "https://i.pinimg.com/originals/e5/a6/06/e5a60682df253641c4e49b9feebef3be.jpg",
-                contexturl: "https://www.google.com/search?q=test5"
-            },
-            {
-                title: "Test6",
-                imgurl: "https://i.pinimg.com/originals/e5/a6/06/e5a60682df253641c4e49b9feebef3be.jpg",
-                contexturl: "https://www.google.com/search?q=test6"
-            },
-            {
-                title: "Test7",
-                imgurl: "https://i.pinimg.com/originals/e5/a6/06/e5a60682df253641c4e49b9feebef3be.jpg",
-                contexturl: "https://www.google.com/search?q=test7"
-            },
-            {
-                title: "Test8",
-                imgurl: "https://i.pinimg.com/originals/e5/a6/06/e5a60682df253641c4e49b9feebef3be.jpg",
-                contexturl: "https://www.google.com/search?q=test8"
-            },
-        ]
-        if(!/\S/.test(kword)) {
-            return []
-        }
-        const columns_to_render = [];
-        demo_stuff.forEach((item,index)=>{
-            columns_to_render.push(
-                <div className="main-column" key={"column_"+index}>
+    RenderImage(data) {
+        return data.map(item=>{
+            return (
+                <div className="main-column" key={"column_"+Math.random()}>
                     <a href={item.contexturl} target="_blank" rel="noopener noreferrer">{item.title}</a>
                     <br/>
                     <Zoom>
                         <img src={item.imgurl} alt={item.title} width="100%"/>
                     </Zoom>
                 </div>
-            );
-        });
-        return columns_to_render;
-
+            )
+        })
     }
     render() {
         return (
@@ -144,7 +137,7 @@ export default class Main extends React.Component {
                     <Sidebar SearchVal={this.state.Keyword} HistoryItems={this.state.SearchHistory}/>
                     <section className="content">
                         <div className="main-container">
-                            {this.RenderImage(this.state.Keyword)}
+                            {this.RenderImage(this.state.ImageLists)}
                         </div>
                     </section>
                 </div>

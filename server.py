@@ -31,7 +31,7 @@ def api_test():
     tmp_data = {}
     tmp_data['data'] = []
     google_res = json.loads(google_res.content.decode("utf-8"))
-    if(google_res['searchInformation']['totalResults'] != '0'):
+    if(int(google_res['searchInformation']['totalResults']) > 0):
         for i in google_res['items']:
             tmp_data.data.append({
                 "title": i['title'],
