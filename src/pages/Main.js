@@ -79,6 +79,13 @@ export default class Main extends React.Component {
                 this.setState({
                     ImageLists: res.data
                 });
+                if(res.data.length === 0) {
+                    Swal.fire({
+                        title:"No Result Found",
+                        text:"Your search did not return any result",
+                        icon:"error"
+                    });
+                }
                 CancelSignal = null;
             } else {
                 Swal.fire({
