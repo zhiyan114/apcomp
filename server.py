@@ -27,6 +27,7 @@ def staticimg_file(path):
 @app.route('/api/search', methods=['POST'])
 def api_test():
     req_data = flask.request
+    print("DEBUG DATA: ",os.getenv('GOOGLE_API',''),req_data.json,os.getenv('GOOGLE_CX',''))
     google_res = requests.get(f"https://www.googleapis.com/customsearch/v1?key={os.getenv('GOOGLE_API','')}&q={req_data.json['keyword']}&cx={os.getenv('GOOGLE_CX','')}&num=8&searchType=image&start=1")
     tmp_data = {}
     tmp_data['data'] = []
