@@ -3,6 +3,8 @@ import os
 import requests
 import json
 import base64
+import aiohttp
+import asyncio
 
 from werkzeug.datastructures import Headers
 
@@ -10,25 +12,34 @@ app = flask.Flask(__name__)
 
 search_history = []
 
+def custprint(e):
+    print("DEBUG:", e)
 
-# Bypass school's firewall which blocks certain images' CDN.
-def UrlToBase64Img(url):
-    if url is None:
-        return ""
+
+# Custom Organizer that organize the data and used to bypass image filters
+async def OrganizeRes(data):
+    url = data['link']
+
     try:
-        # Fake the user agent LOL
-        response = requests.get(url, timeout=0.1)
-        response.headers['user-agent'] = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36'
-        response.headers['referer'] = 'https://furries.video/main/'
-        # Check if response has been timed out
-        if response.status_code == 200:
-            # Get image mime type
-            return f"data:{response.headers['content-type']};base64,"+base64.b64encode(response.content).decode("utf-8")
-        else:
-            return url
+        async with aiohttp.ClientSession() as session:
+            # Fake the user agent LOL
+            headers = Headers({"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.97 Safari/537.36"})
+            async with session.get(url, headers=headers,timeout=3) as resp:
+                if(resp.status == 200):
+                    url = f"data:{resp.headers['content-type']};base64,{base64.b64encode(await resp.read()).decode('utf-8')}"
     except:
-        return url
+        pass
 
+    return {
+            "title": data['title'],
+            "imgurl": url,
+            "contexturl": data['image']['contextLink'],
+            "thumbnail": {
+                "url": data['image']['thumbnailLink'],
+                "width": data['image']['thumbnailWidth'],
+                "height": data['image']['thumbnailHeight']
+            }
+        }
 # Manual Static Service
 @app.route("/")
 def index():
@@ -47,7 +58,7 @@ def staticimg_file(path):
     return flask.send_from_directory('./build/images',path)
 # Actual API lmao
 @app.route('/api/search', methods=['POST'])
-def api_test():
+async def api_test():
     req_data = flask.request
     user_keyword = req_data.get_json()['keyword']
     # Make search request using google's overpriced API ($5 for 1K searches is pretty dogshit but at least they have 100 free search per day right?)
@@ -57,17 +68,12 @@ def api_test():
     google_res = json.loads(google_res.content.decode("utf-8"))
     # Organize the response into a shorter one
     if(int(google_res['searchInformation']['totalResults']) > 0):
-        for i in google_res['items']:
-            tmp_data['data'].append({
-                "title": i['title'],
-                "imgurl": UrlToBase64Img(i['link'] or None), # Convert link to base64 image to render image for client in case their firewall is blocking it
-                "contexturl": i['image']['contextLink'],
-                "thumbnail": {
-                    "url": i['image']['thumbnailLink'],
-                    "width": i['image']['thumbnailWidth'],
-                    "height": i['image']['thumbnailHeight']
-                }
-            })
+        
+        main_data = [OrganizeRes(i) for i in google_res['items']]
+        custprint("LOADER")
+        for data in asyncio.as_completed(main_data):
+            tmp_data['data'].append(await data)
+    custprint("COMPLETE")
     if(len(search_history) > 10):
         search_history.pop(len(search_history)-1)
         search_history.insert(0,user_keyword)
