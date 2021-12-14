@@ -10,11 +10,8 @@ from werkzeug.datastructures import Headers
 
 app = flask.Flask(__name__)
 
-search_history = []
 
-# Main threading print function so that I can print inside the routes
-def custprint(e):
-    print("DEBUG:", e)
+
 
 
 # Custom Organizer that organize the data and used to bypass image filters
@@ -63,7 +60,6 @@ def staticimg_file(path):
 # Actual API lmao
 @app.route('/api/search', methods=['POST'])
 def api_test():
-    print("BAD LOL")
     req_data = flask.request
     user_keyword = req_data.get_json()['keyword']
     # Make search request using google's overpriced API ($5 for 1K searches is pretty dogshit but at least they have 100 free search per day right?)
@@ -71,30 +67,20 @@ def api_test():
     tmp_data = {}
     tmp_data['data'] = []
     google_res = json.loads(google_res.content.decode("utf-8"))
-    # Organize the response into a shorter one
+    # Check if google returned any results
     if(int(google_res['searchInformation']['totalResults']) > 0):
+        # Configure multi-threading
         ThreadingSRV = [None]*len(google_res['items'])
         for i,v in enumerate(google_res['items']):
             ThreadingSRV[i] = {}
             ThreadingSRV[i]['thread'] = threading.Thread(target=OrganizeRes, args=(v,ThreadingSRV[i]), daemon=False)
             ThreadingSRV[i]['thread'].start()
-    if(len(search_history) > 10):
-        search_history.pop(len(search_history)-1)
-        search_history.insert(0,user_keyword)
-    else:
-        search_history.append(user_keyword)
-    tmp_data['history'] = search_history
     start_timer = time.time()*1000
     for i in ThreadingSRV:
         i['thread'].join()
         tmp_data['data'].append(i['data'])
-    custprint(f"Last Request Took: {(time.time()*1000)-start_timer}ms")
+    print(f"Last Request Took: {(time.time()*1000)-start_timer}ms")
     return flask.jsonify(tmp_data)
-@app.route('/api/search/history', methods=['GET'])
-def api_search_history():
-    response = flask.make_response(json.dumps(search_history), 200)
-    response.mimetype = 'application/json'
-    return response
 
 
 if __name__ == "__main__":
