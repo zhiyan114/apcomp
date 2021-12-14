@@ -13,7 +13,6 @@ search_history = []
 
 # Bypass school's firewall which blocks certain images' CDN.
 def UrlToBase64Img(url):
-    print("Main URL",url)
     if url is None:
         return ""
     try:
@@ -21,7 +20,6 @@ def UrlToBase64Img(url):
         response = requests.get(url, timeout=0.1)
         response.headers['user-agent'] = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36'
         response.headers['referer'] = 'https://furries.video/main/'
-        print("Response",response)
         # Check if response has been timed out
         if response.status_code == 200:
             # Get image mime type
@@ -96,5 +94,5 @@ if __name__ == "__main__":
         app.run(host="0.0.0.0", port=443, ssl_context=(cert,key))
     else:
         print("No Certificate is Detected, initializing Plaintext Context")
-        app.run(host='0.0.0.0', port=80,debug=True)
+        app.run(host='0.0.0.0', port=80)
 
