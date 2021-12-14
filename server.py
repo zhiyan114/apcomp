@@ -45,7 +45,7 @@ def api_test():
         for i in google_res['items']:
             tmp_data['data'].append({
                 "title": i['title'],
-                "imgurl": UrlToBase64Img(i['link']), # Convert link to base64 image to render image for client even if their firewall is blocking it
+                "imgurl": UrlToBase64Img(i['link']), # Convert link to base64 image to render image for client in case their firewall is blocking it
                 "contexturl": i['image']['contextLink'],
                 "thumbnail": {
                     "url": i['image']['thumbnailLink'],
