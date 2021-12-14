@@ -4,6 +4,8 @@ import requests
 import json
 import base64
 
+from werkzeug.datastructures import Headers
+
 app = flask.Flask(__name__)
 
 search_history = []
@@ -11,8 +13,23 @@ search_history = []
 
 # Bypass school's firewall which blocks certain images' CDN.
 def UrlToBase64Img(url):
-    response = requests.get(url)
-    return base64.b64encode(response.content).decode("utf-8")
+    print("Main URL",url)
+    if url is None:
+        return ""
+    try:
+        # Fake the user agent LOL
+        response = requests.get(url, timeout=0.1)
+        response.headers['user-agent'] = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36'
+        response.headers['referer'] = 'https://furries.video/main/'
+        print("Response",response)
+        # Check if response has been timed out
+        if response.status_code == 200:
+            # Get image mime type
+            return f"data:{response.headers['content-type']};base64,"+base64.b64encode(response.content).decode("utf-8")
+        else:
+            return url
+    except:
+        return url
 
 # Manual Static Service
 @app.route("/")
@@ -45,7 +62,7 @@ def api_test():
         for i in google_res['items']:
             tmp_data['data'].append({
                 "title": i['title'],
-                "imgurl": UrlToBase64Img(i['link']), # Convert link to base64 image to render image for client in case their firewall is blocking it
+                "imgurl": UrlToBase64Img(i['link'] or None), # Convert link to base64 image to render image for client in case their firewall is blocking it
                 "contexturl": i['image']['contextLink'],
                 "thumbnail": {
                     "url": i['image']['thumbnailLink'],
@@ -79,5 +96,5 @@ if __name__ == "__main__":
         app.run(host="0.0.0.0", port=443, ssl_context=(cert,key))
     else:
         print("No Certificate is Detected, initializing Plaintext Context")
-        app.run(host='0.0.0.0', port=80)
+        app.run(host='0.0.0.0', port=80,debug=True)
 
