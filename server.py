@@ -2,11 +2,17 @@ import flask
 import os
 import requests
 import json
-import sys
+import base64
 
 app = flask.Flask(__name__)
 
 search_history = []
+
+
+# Bypass school's firewall which blocks certain images' CDN.
+def UrlToBase64Img(url):
+    response = requests.get(url)
+    return base64.b64encode(response.content).decode("utf-8")
 
 # Manual Static Service
 @app.route("/")
@@ -29,15 +35,17 @@ def staticimg_file(path):
 def api_test():
     req_data = flask.request
     user_keyword = req_data.get_json()['keyword']
+    # Make search request using google's overpriced API ($5 for 1K searches is pretty dogshit but at least they have 100 free search per day right?)
     google_res = requests.get(f"https://www.googleapis.com/customsearch/v1?key={os.getenv('GOOGLE_API','')}&safe=active&q={user_keyword}&cx={os.getenv('GOOGLE_CX','')}&num=8&searchType=image&start=1")
     tmp_data = {}
     tmp_data['data'] = []
     google_res = json.loads(google_res.content.decode("utf-8"))
+    # Organize the response into a shorter one
     if(int(google_res['searchInformation']['totalResults']) > 0):
         for i in google_res['items']:
             tmp_data['data'].append({
                 "title": i['title'],
-                "imgurl": i['link'],
+                "imgurl": UrlToBase64Img(i['link']), # Convert link to base64 image to render image for client even if their firewall is blocking it
                 "contexturl": i['image']['contextLink'],
                 "thumbnail": {
                     "url": i['image']['thumbnailLink'],
@@ -64,5 +72,12 @@ def api_search_history():
 if __name__ == "__main__":
     print("backend executed")
     print("API INIT KEY: ",os.getenv('GOOGLE_API',''),os.getenv('GOOGLE_CX',''))
-    app.run(host='0.0.0.0', port=80)
+    cert = os.getenv('SSL_CERT',None)
+    key = os.getenv('SSL_KEY',None)
+    if(cert is not None and key is not None): # Use TLS if cert and key are provided in the environment variables
+        print("Certificate Detected, initializing TLS Context")
+        app.run(host="0.0.0.0", port=443, ssl_context=(cert,key))
+    else:
+        print("No Certificate is Detected, initializing Plaintext Context")
+        app.run(host='0.0.0.0', port=80)
 
