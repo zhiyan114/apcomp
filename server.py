@@ -12,6 +12,7 @@ app = flask.Flask(__name__)
 
 search_history = []
 
+# Main threading print function so that I can print inside the routes
 def custprint(e):
     print("DEBUG:", e)
 
@@ -62,6 +63,7 @@ def staticimg_file(path):
 # Actual API lmao
 @app.route('/api/search', methods=['POST'])
 def api_test():
+    print("BAD LOL")
     req_data = flask.request
     user_keyword = req_data.get_json()['keyword']
     # Make search request using google's overpriced API ($5 for 1K searches is pretty dogshit but at least they have 100 free search per day right?)
