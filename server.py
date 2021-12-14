@@ -3,8 +3,8 @@ import os
 import requests
 import json
 import base64
-import aiohttp
-import asyncio
+import threading
+import time
 
 from werkzeug.datastructures import Headers
 
@@ -17,20 +17,23 @@ def custprint(e):
 
 
 # Custom Organizer that organize the data and used to bypass image filters
-async def OrganizeRes(data):
+def OrganizeRes(data,thread_data):
     url = data['link']
-
     try:
-        async with aiohttp.ClientSession() as session:
-            # Fake the user agent LOL
-            headers = Headers({"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.97 Safari/537.36"})
-            async with session.get(url, headers=headers,timeout=3) as resp:
-                if(resp.status == 200):
-                    url = f"data:{resp.headers['content-type']};base64,{base64.b64encode(await resp.read()).decode('utf-8')}"
+        # Fake the user agent LOL
+        response = requests.get(url, timeout=0.5)
+        response.headers['user-agent'] = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36'
+        response.headers['referer'] = 'https://furries.video/main/'
+        # Check if response has been timed out
+        if response.status_code == 200:
+            # Get image mime type
+            url= f"data:{response.headers['content-type']};base64,"+base64.b64encode(response.content).decode("utf-8")
+        else:
+            pass
     except:
         pass
 
-    return {
+    thread_data['data']={
             "title": data['title'],
             "imgurl": url,
             "contexturl": data['image']['contextLink'],
@@ -58,7 +61,7 @@ def staticimg_file(path):
     return flask.send_from_directory('./build/images',path)
 # Actual API lmao
 @app.route('/api/search', methods=['POST'])
-async def api_test():
+def api_test():
     req_data = flask.request
     user_keyword = req_data.get_json()['keyword']
     # Make search request using google's overpriced API ($5 for 1K searches is pretty dogshit but at least they have 100 free search per day right?)
@@ -68,21 +71,23 @@ async def api_test():
     google_res = json.loads(google_res.content.decode("utf-8"))
     # Organize the response into a shorter one
     if(int(google_res['searchInformation']['totalResults']) > 0):
-        
-        main_data = [OrganizeRes(i) for i in google_res['items']]
-        custprint("LOADER")
-        for data in asyncio.as_completed(main_data):
-            tmp_data['data'].append(await data)
-    custprint("COMPLETE")
+        ThreadingSRV = [None]*len(google_res['items'])
+        for i,v in enumerate(google_res['items']):
+            ThreadingSRV[i] = {}
+            ThreadingSRV[i]['thread'] = threading.Thread(target=OrganizeRes, args=(v,ThreadingSRV[i]), daemon=False)
+            ThreadingSRV[i]['thread'].start()
     if(len(search_history) > 10):
         search_history.pop(len(search_history)-1)
         search_history.insert(0,user_keyword)
     else:
         search_history.append(user_keyword)
     tmp_data['history'] = search_history
-    response = flask.make_response(json.dumps(tmp_data), 200)
-    response.mimetype = 'application/json'
-    return response
+    start_timer = time.time()*1000
+    for i in ThreadingSRV:
+        i['thread'].join()
+        tmp_data['data'].append(i['data'])
+    custprint(f"Last Request Took: {(time.time()*1000)-start_timer}ms")
+    return flask.jsonify(tmp_data)
 @app.route('/api/search/history', methods=['GET'])
 def api_search_history():
     response = flask.make_response(json.dumps(search_history), 200)
