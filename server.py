@@ -21,7 +21,6 @@ def OrganizeRes(data,thread_data):
         # Fake the user agent LOL
         response = requests.get(url, timeout=0.3)
         response.headers['user-agent'] = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36'
-        response.headers['referer'] = 'https://furries.video/main/'
         # Check if response has been timed out
         if response.status_code == 200:
             # Get image mime type
