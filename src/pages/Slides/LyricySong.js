@@ -63,6 +63,57 @@ export default class Main extends React.Component {
             Keyword: keyword,
             SearchHistory: SearchHistory
         });
+        // POST Request to /api/search
+        let CancelSignal = new AbortController();
+        fetch("/api/search",{
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                keyword: keyword
+            }),
+            signal: CancelSignal.signal,
+        }).then(res=>res.json()).then(res=>{
+            if(res && res.data) {
+                CancelSignal = null;
+                if(res.data.length === 0) {
+                    Swal.fire({
+                        title:"No Result Found",
+                        text:"Your search did not return any result",
+                        icon:"error"
+                    });
+                    return;
+                }
+                this.setState({
+                    ImageLists: res.data
+                });
+            } else {
+                Swal.fire({
+                    title:"Error",
+                    text:"Unable to perform image search",
+                    icon:"error"
+                });
+                CancelSignal = null;
+            }
+        }).catch(err=>{
+            Swal.fire({
+                title:"Error",
+                text:"Unable to perform image search",
+                icon:"error"
+            });
+            CancelSignal = null;
+        });
+        setTimeout(()=>{
+            if(CancelSignal) {
+                CancelSignal.abort();
+                Swal.fire({
+                    title:"Timeout",
+                    text:"The search request has timed out for 10 seconds. Please try again.",
+                    icon:"error"
+                });
+            }
+        },10000);
     }
     RenderImage(data) {
         return data.map(item=>{
@@ -81,7 +132,7 @@ export default class Main extends React.Component {
         return (
             <React.Fragment>
                 <Helmet>
-                    <title>Main - History</title>
+                    <title>Main - IMGSRV</title>
                     <style>
                         {`
                             body {
@@ -96,11 +147,9 @@ export default class Main extends React.Component {
                 <div className="mainpage">
                     <Sidebar SearchVal={this.state.Keyword} HistoryItems={this.state.SearchHistory}/>
                     <section className="content">
-                        <div style={{textAlign:"center"}}>
-                            <h1 style={{fontSize:"2rem"}}>Search Has Been Disabled For This Project!!!!!</h1>
-                            <p style={{marginTop:"1rem"}}>Please select a page you want to visit on the topbar. Remember be a good kid and don't go on e621!!!</p>
+                        <div className="main-container">
+                            {this.RenderImage(this.state.ImageLists)}
                         </div>
-                        
                     </section>
                 </div>
                 <Footer/>
@@ -108,8 +157,3 @@ export default class Main extends React.Component {
         )
     }
 }
-/*
-<div className="main-container">
-                            
-                        </div>
-                        */

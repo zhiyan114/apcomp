@@ -5,7 +5,7 @@ export default class Footer extends React.Component {
     render() {
         return (
             <footer className="footer">
-                <span>Running IMGSRV - </span>
+                <span>Running History - </span>
                 <a href="/" onClick={(e)=>{e.preventDefault()}}>Themes / Gestures</a>
                 <span> - </span>
                 <a href="/" onClick={(e)=>{e.preventDefault()}}>Rules</a>

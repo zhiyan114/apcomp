@@ -8,7 +8,7 @@ export default class Topbar extends React.Component {
     render() {
         return (
             <menu className="menu">
-                <li id="nav-home"><a id="nav-home-link" href="/">IMGSRV</a></li>
+                <li id="nav-home"><a id="nav-home-link" href="/">History</a></li>
                 <li id="nav-sign-in"><a id="nav-sign-in-link" href="/" onClick={(e)=>{e.preventDefault(); this.ShowAlert("Unavailable","You cant login","error");}}><b>Sign in</b></a></li>
                 <li id="nav-posts"><a id="nav-posts-link" href="/" onClick={(e)=>{e.preventDefault(); this.ShowAlert("Unavailable","You cant access posts","error")}}>Posts</a></li>
                 <li id="nav-comments"><a id="nav-comments-link" href="/" onClick={(e)=>{e.preventDefault(); this.ShowAlert("Unavailable","You cant access comments","error")}}>Comments</a></li>

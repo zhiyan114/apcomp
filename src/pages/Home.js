@@ -50,7 +50,7 @@ export default class Home extends React.Component {
         return (
         <React.Fragment>
             <Helmet>
-                <title>IMGSRV</title>
+                <title>History</title>
                 
                 <style>
                     {`
@@ -63,7 +63,7 @@ export default class Home extends React.Component {
             <div id="a-home">
                 <div id="searchbox" className="mascotbox">
                     <h1 style={{fontSize: "4em",paddingBottom: "2px", paddingTop:"1.5px"}}>
-                        <a href="/">IMGSRV</a>
+                        <a href="/">History</a>
                     </h1>
                     <div id="links">
                         <a title="Login or sign up" href="https://e621.net/session/new" onClick={(e)=>{e.preventDefault(); this.Messagebox("Unavailable","Authentication Method Unavailable","error")}}>Login/Signup</a>
