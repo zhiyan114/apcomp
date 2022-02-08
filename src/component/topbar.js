@@ -10,10 +10,10 @@ export default class Topbar extends React.Component {
             <menu className="menu">
                 <li id="nav-home"><a id="nav-home-link" href="/">History</a></li>
                 <li id="nav-sign-in"><a id="nav-sign-in-link" href="/" onClick={(e)=>{e.preventDefault(); this.ShowAlert("Unavailable","You cant login","error");}}><b>Sign in</b></a></li>
-                <li id="nav-posts"><a id="nav-posts-link" href="/" onClick={(e)=>{e.preventDefault(); this.ShowAlert("Unavailable","You cant access posts","error")}}>Posts</a></li>
-                <li id="nav-comments"><a id="nav-comments-link" href="/" onClick={(e)=>{e.preventDefault(); this.ShowAlert("Unavailable","You cant access comments","error")}}>Comments</a></li>
-                <li id="nav-artists"><a id="nav-artists-link" href="/" onClick={(e)=>{e.preventDefault(); this.ShowAlert("Unavailable","You cant access artists","error")}}>Artists</a></li>
-                <li id="nav-tags"><a id="nav-tags-link" href="/" onClick={(e)=>{e.preventDefault(); this.ShowAlert("Unavailable","You cant access tags","error")}}>Tags</a></li>
+                <li id="nav-posts"><a id="nav-comments-link" href="/slides/info">Music Info</a></li>
+                <li id="nav-comments"><a id="nav-posts-link" href="/slides/lyrics">Video and Lyrics</a></li>
+                <li id="nav-artists"><a id="nav-artists-link" href="/slides/motivation">Artist's Motivation</a></li>
+                <li id="nav-tags"><a id="nav-tags-link" href="/slides/credits">Credits/Citation</a></li>
                 <li id="nav-blips"><a id="nav-blips-link" href="/" onClick={(e)=>{e.preventDefault(); this.ShowAlert("Unavailable","You cant access blips","error")}}>Blips</a></li>
                 <li id="nav-pools"><a id="nav-pools-link" href="/" onClick={(e)=>{e.preventDefault(); this.ShowAlert("Unavailable","You cant access pools","error")}}>Pools</a></li>
                 <li id="nav-sets"><a id="nav-sets-link" href="/" onClick={(e)=>{e.preventDefault(); this.ShowAlert("Unavailable","You cant access sets","error")}}>Sets</a></li>
